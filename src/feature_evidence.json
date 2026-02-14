@@ -1,0 +1,131 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-coherent-multi-page-frontend-with-the-following-routes-pages-home-login-dashboard-and-investment-include-a-persistent-top-navigation-or-sidebar-that-lets-a-signed-out-user-access-home-and-login-and-a-signed-in-user-access-dashboard-and-investment-plus-a-log-out-action",
+      "featureTitle": "Create a coherent multi-page frontend with the following routes/pages: Home, Login, Dashboard, and Investment. Include a persistent top navigation (or sidebar) that lets a signed-out user access Home and Login, and a signed-in user access Dashboard and Investment, plus a Log out action.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/TopNav.tsx",
+        "frontend/src/pages/Dashboard.tsx",
+        "frontend/src/pages/Home.tsx",
+        "frontend/src/pages/Investment.tsx",
+        "frontend/src/pages/Login.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-authentication-using-internet-identity-and-wire-it-to-the-login-page-sign-in-sign-out-the-login-page-must-clearly-display-signed-in-state-principal-and-provide-a-sign-in-button-when-signed-out-and-a-sign-out-button-when-signed-in",
+      "featureTitle": "Implement authentication using Internet Identity and wire it to the Login page (sign in/sign out). The Login page must clearly display signed-in state (Principal) and provide a sign-in button when signed out and a sign-out button when signed in.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/TopNav.tsx",
+        "frontend/src/pages/Login.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-the-investment-page-ui-to-manage-investment-records-for-the-signed-in-user-list-existing-investments-create-new-investment-edit-an-investment-and-delete-an-investment-use-clear-english-form-labels-and-inline-validation-required-fields-numeric-fields",
+      "featureTitle": "Build the Investment page UI to manage investment records for the signed-in user: list existing investments, create new investment, edit an investment, and delete an investment. Use clear English form labels and inline validation (required fields, numeric fields).",
+      "files": [
+        "frontend/src/components/ConfirmDialog.tsx",
+        "frontend/src/components/InvestmentForm.tsx",
+        "frontend/src/pages/Investment.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-the-dashboard-page-to-summarize-the-signed-in-user-s-portfolio-investments-provide-at-least-total-number-of-investments-total-invested-amount-sum-and-a-simple-breakdown-by-investment-type-category-if-available-in-the-data-model",
+      "featureTitle": "Build the Dashboard page to summarize the signed-in user’s portfolio/investments. Provide at least: total number of investments, total invested amount (sum), and a simple breakdown by investment type/category if available in the data model.",
+      "files": [
+        "frontend/src/hooks/useDashboardSummary.ts",
+        "frontend/src/pages/Dashboard.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-establish-a-consistent-visual-theme-and-layout-styling-across-all-pages-typography-spacing-components-suitable-for-a-finance-portfolio-app-use-a-distinct-style-avoid-default-look-and-apply-it-consistently",
+      "featureTitle": "Establish a consistent visual theme and layout styling across all pages (typography, spacing, components) suitable for a finance/portfolio app. Use a distinct style (avoid default look) and apply it consistently.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-generate-and-add-a-small-set-of-static-visual-assets-used-by-the-home-page-hero-section-and-overall-branding-stored-under-frontend-public-assets-generated-and-render-them-in-the-ui-without-routing-through-the-backend",
+      "featureTitle": "Generate and add a small set of static visual assets used by the Home page hero section and overall branding (stored under frontend/public/assets/generated) and render them in the UI without routing through the backend.",
+      "files": [
+        "frontend/src/components/TopNav.tsx",
+        "frontend/src/pages/Home.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

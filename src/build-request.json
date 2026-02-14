@@ -1,0 +1,150 @@
+{
+  "kind": "build_request",
+  "title": "Portfolio & Investment Tracker: Home, Login, Dashboard, Investment pages",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a coherent multi-page frontend with the following routes/pages: Home, Login, Dashboard, and Investment. Include a persistent top navigation (or sidebar) that lets a signed-out user access Home and Login, and a signed-in user access Dashboard and Investment, plus a Log out action.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Generate Login Page track Portfolio and investment\nPAGE HOME\nLOGIN\nDASHBOARD\nINVESTMENT"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A user can navigate to Home, Login, Dashboard, and Investment pages via the app UI and direct URL routing.",
+        "Navigation changes based on authentication state: signed-out users do not see Dashboard/Investment links; signed-in users do.",
+        "Dashboard and Investment pages are protected: signed-out users attempting to access them are redirected to Login (or shown a clear sign-in required state with a link to Login)."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement authentication using Internet Identity and wire it to the Login page (sign in/sign out). The Login page must clearly display signed-in state (Principal) and provide a sign-in button when signed out and a sign-out button when signed in.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Generate Login Page track Portfolio and investment"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Clicking “Sign in” on the Login page completes an Internet Identity sign-in flow and returns the user to the app signed in.",
+        "Clicking “Sign out” signs the user out and updates the UI state immediately.",
+        "When signed in, the UI shows the user’s Principal identifier somewhere on the Login page (and/or account menu)."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Add backend data models and APIs to support per-user portfolio and investment tracking. At minimum, support: creating an investment record, listing the signed-in user’s investment records, updating an investment record, and deleting an investment record. All data must be scoped to the caller Principal.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "track Portfolio and investment"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes authenticated (caller-based) CRUD methods for investment records.",
+        "A user can only access and modify their own investment records; accessing another user’s data is not possible through the public API.",
+        "Data persists across page reloads and canister upgrades are considered (add migration only if stable state schema changes require it)."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Build the Investment page UI to manage investment records for the signed-in user: list existing investments, create new investment, edit an investment, and delete an investment. Use clear English form labels and inline validation (required fields, numeric fields).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "INVESTMENT"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Investment page displays a list/table of the user’s investment records fetched from the backend.",
+        "User can add a new investment via a form and it appears in the list after saving.",
+        "User can edit an existing investment and see updated values in the list.",
+        "User can delete an investment and it is removed from the list after confirmation."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Build the Dashboard page to summarize the signed-in user’s portfolio/investments. Provide at least: total number of investments, total invested amount (sum), and a simple breakdown by investment type/category if available in the data model.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "DASHBOARD"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Dashboard shows summary metrics derived from the user’s investment records (count and totals).",
+        "If investment type/category exists, Dashboard shows a breakdown section (e.g., grouped totals) that updates as data changes.",
+        "Dashboard gracefully handles the empty state (no investments) with clear calls to action linking to Investment page."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Establish a consistent visual theme and layout styling across all pages (typography, spacing, components) suitable for a finance/portfolio app. Use a distinct style (avoid default look) and apply it consistently.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All pages share consistent styling (header/nav, page container, section headings, form styles).",
+        "Theme is visually cohesive and not primarily blue/purple.",
+        "UI components follow a consistent design language (buttons, cards, inputs, empty states)."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Generate and add a small set of static visual assets used by the Home page hero section and overall branding (stored under frontend/public/assets/generated) and render them in the UI without routing through the backend.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "PAGE HOME"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Generated images are present under frontend/public/assets/generated and referenced directly by the frontend.",
+        "Home page renders the generated hero/branding visual(s) with proper sizing and responsive behavior.",
+        "App still functions correctly if images are unavailable (graceful fallback)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor (no additional backend services).",
+    "Do not edit files in frontend immutable paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui (compose instead).",
+    "No external databases or third-party auth providers; authentication must use Internet Identity.",
+    "User-facing text must be in English."
+  ],
+  "nonGoals": [
+    "Real-time price tracking, live market data integrations, or external finance APIs.",
+    "Advanced analytics (e.g., IRR, time-weighted returns) beyond basic totals and grouping.",
+    "Multi-user sharing/collaboration features.",
+    "Mobile apps or non-React frontends."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Minimalist finance dashboard hero illustration with charts and abstract portfolio elements (home-hero-illustration.dim_1400x800.png)",
+      "Simple geometric app logo mark (app-logo-mark.dim_512x512.png)"
+    ],
+    "edits": []
+  }
+}

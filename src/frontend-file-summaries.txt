@@ -1,0 +1,15 @@
+{
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, route definitions (Home, Login, Dashboard, Investment), protected route logic, profile setup flow, and app layout with navigation and footer.",
+  "frontend/src/pages/Home.tsx": "Landing page with hero section featuring generated illustration, feature cards highlighting portfolio management capabilities, and call-to-action sections encouraging users to sign up.",
+  "frontend/src/pages/Login.tsx": "Authentication page displaying Internet Identity sign-in/sign-out functionality with principal display, status indicators, and navigation to dashboard for authenticated users.",
+  "frontend/src/pages/Dashboard.tsx": "Portfolio summary page showing total investments, total value, asset class breakdown with visual progress bars, and empty state with call-to-action to add first investment.",
+  "frontend/src/pages/Investment.tsx": "Investment management page with table listing all investments, add/edit/delete actions, empty state guidance, and integration with investment form and confirmation dialogs (fixed to use 'type' property instead of 'type_').",
+  "frontend/src/components/TopNav.tsx": "Persistent navigation header with logo, navigation links (Home, Dashboard, Investments), authentication state-aware menu, and user account dropdown with sign-out functionality.",
+  "frontend/src/components/InvestmentForm.tsx": "Reusable dialog form component for creating and editing investments with validation, type selection, amount input, and loading states during submission (fixed to use 'type' property instead of 'type_').",
+  "frontend/src/components/ConfirmDialog.tsx": "Reusable confirmation dialog component using AlertDialog for destructive actions like deleting investments with loading state support.",
+  "frontend/src/components/ProfileSetup.tsx": "First-time user profile setup component that prompts authenticated users to enter their name before accessing the application.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for all backend operations including user profile management (get/save) and investment CRUD operations (list/create/update/delete) with proper cache invalidation.",
+  "frontend/src/hooks/useDashboardSummary.ts": "Custom hook that derives dashboard summary metrics from investment data including total count, total amount, and breakdown by investment type with sorting (fixed to use 'type' property instead of 'type_').",
+  "frontend/src/index.css": "Global styles with OKLCH color system defining finance-themed emerald/teal color palette for light and dark modes, avoiding default blue/purple aesthetics.",
+  "frontend/tailwind.config.js": "Tailwind configuration with custom color tokens, Inter font family, extended utilities, and design system tokens matching the finance theme."
+}

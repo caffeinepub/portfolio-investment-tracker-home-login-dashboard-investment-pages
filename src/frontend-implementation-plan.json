@@ -1,0 +1,194 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Portfolio & Investment Tracker Frontend (Home, Login, Dashboard, Investment)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create Home, Login, Dashboard, and Investment routes with a persistent navigation that adapts to authentication state and protects signed-in pages.",
+      "acceptanceCriteria": [
+        "A user can navigate to Home, Login, Dashboard, and Investment pages via the app UI and direct URL routing.",
+        "Navigation changes based on authentication state: signed-out users do not see Dashboard/Investment links; signed-in users do.",
+        "Dashboard and Investment pages are protected: signed-out users attempting to access them are redirected to Login (or shown a clear sign-in required state with a link to Login)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Add the app router and route table for Home, Login, Dashboard, and Investment pages; wrap protected pages with a guard that redirects signed-out users to Login."
+        },
+        {
+          "path": "frontend/src/components/TopNav.tsx",
+          "operation": "create",
+          "description": "Implement a persistent top navigation that conditionally renders Home/Login links for signed-out users and Dashboard/Investment + Log out action for signed-in users; use shadcn-ui components (e.g., Button) for consistent styling. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/ProtectedRoute.tsx",
+          "operation": "create",
+          "description": "Create a reusable route guard component that checks authentication state and either renders children or redirects/shows a sign-in-required state with a link to Login."
+        },
+        {
+          "path": "frontend/src/pages/Home.tsx",
+          "operation": "create",
+          "description": "Create the Home page shell (hero section + intro copy) that will be used as a public route."
+        },
+        {
+          "path": "frontend/src/pages/Login.tsx",
+          "operation": "create",
+          "description": "Create the Login page shell and wire it into routing so it is reachable via navigation and direct URL."
+        },
+        {
+          "path": "frontend/src/pages/Dashboard.tsx",
+          "operation": "create",
+          "description": "Create the Dashboard page shell and ensure it is only reachable via ProtectedRoute when signed in."
+        },
+        {
+          "path": "frontend/src/pages/Investment.tsx",
+          "operation": "create",
+          "description": "Create the Investment page shell and ensure it is only reachable via ProtectedRoute when signed in."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Implement Internet Identity authentication wiring in the Login page and across the app (sign in/out, principal display, UI updates).",
+      "acceptanceCriteria": [
+        "Clicking “Sign in” on the Login page completes an Internet Identity sign-in flow and returns the user to the app signed in.",
+        "Clicking “Sign out” signs the user out and updates the UI state immediately.",
+        "When signed in, the UI shows the user’s Principal identifier somewhere on the Login page (and/or account menu)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/Login.tsx",
+          "operation": "modify",
+          "description": "Wire Internet Identity auth into the Login page using the existing useInternetIdentity hook (do not edit the hook): show signed-out state with a Sign in button, signed-in state with Principal display and a Sign out button; use shadcn-ui components (e.g., Button, Card) for layout. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/TopNav.tsx",
+          "operation": "modify",
+          "description": "Connect the Log out action to Internet Identity clear() and ensure React Query cached data is cleared on logout (per authorization component guidance); use shadcn-ui components for menus/buttons as needed. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/ProtectedRoute.tsx",
+          "operation": "modify",
+          "description": "Ensure the protection logic is based on Internet Identity authentication state and consistently redirects (or shows a clear sign-in-required state) for signed-out users."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Ensure the top-level layout re-renders navigation and protected content immediately when authentication state changes (login/logout)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Build Investment page UI for per-user investment CRUD with inline validation and backend integration.",
+      "acceptanceCriteria": [
+        "Investment page displays a list/table of the user’s investment records fetched from the backend.",
+        "User can add a new investment via a form and it appears in the list after saving.",
+        "User can edit an existing investment and see updated values in the list.",
+        "User can delete an investment and it is removed from the list after confirmation."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useInvestments.ts",
+          "operation": "create",
+          "description": "Create React Query hooks that call the backend actor (via useActor) to list/create/update/delete investment records and manage loading/error states for the Investment page."
+        },
+        {
+          "path": "frontend/src/pages/Investment.tsx",
+          "operation": "modify",
+          "description": "Implement Investment management UI: table/list of investments, create form, edit flow, delete confirmation, and inline validation (required fields, numeric amount); use shadcn-ui components (e.g., Table, Input, Select, Dialog/AlertDialog, Button, Card) for consistent UX. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/InvestmentForm.tsx",
+          "operation": "create",
+          "description": "Add a reusable Investment form component used for both create and edit, with clear English labels, inline validation feedback, and type/category selection; use shadcn-ui form primitives (e.g., Input, Select, Label, Button). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/ConfirmDialog.tsx",
+          "operation": "create",
+          "description": "Create a reusable confirmation dialog component for destructive actions (delete investment); use shadcn-ui AlertDialog (or Dialog) components. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Build Dashboard page summarizing the user’s investments with totals and category breakdown and a clear empty state.",
+      "acceptanceCriteria": [
+        "Dashboard shows summary metrics derived from the user’s investment records (count and totals).",
+        "If investment type/category exists, Dashboard shows a breakdown section (e.g., grouped totals) that updates as data changes.",
+        "Dashboard gracefully handles the empty state (no investments) with clear calls to action linking to Investment page."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useDashboardSummary.ts",
+          "operation": "create",
+          "description": "Create a small derivation hook that consumes investment records (via useInvestments or direct query) and computes summary metrics (count, sum, grouped totals by type) for the Dashboard."
+        },
+        {
+          "path": "frontend/src/pages/Dashboard.tsx",
+          "operation": "modify",
+          "description": "Render summary cards for total investments and total invested amount, plus a breakdown section grouped by investment type/category; handle empty state with a clear call-to-action link to the Investment page; use shadcn-ui components (e.g., Card, Button) for visual consistency. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Establish and apply a consistent finance-themed visual layout across all pages (not primarily blue/purple).",
+      "acceptanceCriteria": [
+        "All pages share consistent styling (header/nav, page container, section headings, form styles).",
+        "Theme is visually cohesive and not primarily blue/purple.",
+        "UI components follow a consistent design language (buttons, cards, inputs, empty states)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Define global theme tokens (CSS variables used by Tailwind/shadcn-ui), typography, and baseline element styles to create a cohesive finance look (e.g., neutrals + green/emerald accents; avoid primarily blue/purple). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/AppLayout.tsx",
+          "operation": "create",
+          "description": "Create a shared layout wrapper providing consistent page container spacing, headings, and section structure; include TopNav to ensure persistent navigation across routes; use shadcn-ui components (e.g., Card) where appropriate. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wrap all routes with AppLayout so styling, spacing, and navigation are consistent across Home, Login, Dashboard, and Investment."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Add and render generated static branding/hero assets on Home (and optionally in navigation) directly from frontend/public.",
+      "acceptanceCriteria": [
+        "Generated images are present under frontend/public/assets/generated and referenced directly by the frontend.",
+        "Home page renders the generated hero/branding visual(s) with proper sizing and responsive behavior.",
+        "App still functions correctly if images are unavailable (graceful fallback)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/home-hero-illustration.dim_1400x800.png",
+          "operation": "create",
+          "description": "Add the generated static Home hero illustration asset at frontend/public/assets/generated/home-hero-illustration.dim_1400x800.png."
+        },
+        {
+          "path": "frontend/public/assets/generated/app-logo-mark.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated static app logo mark asset at frontend/public/assets/generated/app-logo-mark.dim_512x512.png."
+        },
+        {
+          "path": "frontend/src/pages/Home.tsx",
+          "operation": "modify",
+          "description": "Render frontend/public/assets/generated/home-hero-illustration.dim_1400x800.png in the hero section and include a graceful fallback (alt text + layout that still reads well if the image fails to load)."
+        },
+        {
+          "path": "frontend/src/components/TopNav.tsx",
+          "operation": "modify",
+          "description": "Render frontend/public/assets/generated/app-logo-mark.dim_512x512.png as part of branding in the persistent navigation with accessible alt text and a safe fallback if the image is missing."
+        }
+      ]
+    }
+  ]
+}

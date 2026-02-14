@@ -1,0 +1,79 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-11T17:06:00.181Z",
+  "summary": "Most core app requirements (multi-page routing with protected pages, Internet Identity login UI, investment CRUD UI, dashboard summaries, and consistent theme) appear implemented. However, evidence is insufficient to confirm the required generated image assets exist in the specified public path, and backend upgrade persistence (stable state) is not evident in the provided backend snippet. Diff also introduces unrequested profile/onboarding and role-based access control features (including an admin token flow).",
+  "missing_requirements": [
+    {
+      "id": "REQ-3",
+      "requirement": "Data persists across page reloads and canister upgrades are considered (stable state / migration as needed).",
+      "reason": "The shown backend state uses non-stable `let userProfiles` / `let userPortfolios` Maps and the diff snippet does not show any `stable` variables or `preupgrade`/`postupgrade` hooks. Because the file is truncated, this may exist later, but there is no evidence in the provided excerpt.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "requirement": "Generated images are present under frontend/public/assets/generated and referenced directly by the frontend; Home renders hero/branding visuals with graceful fallback.",
+      "reason": "Frontend pages reference the expected asset URLs and include `onError` fallbacks, but the diff summary does not show any added files under `frontend/public/assets/generated` (the required image files are not visible in the provided diff listing; some files are omitted).",
+      "evidence": [
+        "frontend/src/pages/Home.tsx",
+        "frontend/src/components/TopNav.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "First-time user profile setup flow (prompting for name) and backend user profile APIs.",
+      "reason": "BuildRequest does not ask for user profiles or a mandatory profile setup gate before accessing protected pages; only authentication and investment tracking are required.",
+      "evidence": [
+        "frontend/src/components/ProfileSetup.tsx",
+        "frontend/src/App.tsx",
+        "frontend/src/hooks/useQueries.ts",
+        "backend/main.mo"
+      ]
+    },
+    {
+      "description": "Role-based access control system with admin initialization via a secret URL parameter (caffeineAdminToken) and authorization mixins.",
+      "reason": "BuildRequest requires Internet Identity authentication and caller-scoped data access, but does not request an admin role system, secret-token initialization, or additional authorization framework.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/hooks/useActor.ts",
+        "frontend/src/utils/urlParams.ts"
+      ]
+    },
+    {
+      "description": "Branding/footer link to caffeine.ai and inclusion of next-themes ThemeProvider.",
+      "reason": "Not requested by the BuildRequest requirements; adds extra branding and theming infrastructure beyond the specified pages and assets.",
+      "evidence": [
+        "frontend/src/App.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.66,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/ConfirmDialog.tsx",
+    "frontend/src/components/InvestmentForm.tsx",
+    "frontend/src/components/ProfileSetup.tsx",
+    "frontend/src/components/TopNav.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useDashboardSummary.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/Dashboard.tsx",
+    "frontend/src/pages/Home.tsx",
+    "frontend/src/pages/Investment.tsx",
+    "frontend/src/pages/Login.tsx",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

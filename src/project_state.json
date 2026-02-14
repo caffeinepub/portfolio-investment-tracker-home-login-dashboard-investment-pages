@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Portfolio and investment tracking app with Home, Login, Dashboard, and Investment pages.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Minimalist finance dashboard hero illustration with charts and abstract portfolio elements (home-hero-illustration.dim_1400x800.png)\n- Simple geometric app logo mark (app-logo-mark.dim_512x512.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-coherent-multi-page-frontend-with-the-following-routes-pages-home-login-dashboard-and-investment-include-a-persistent-top-navigation-or-sidebar-that-lets-a-signed-out-user-access-home-and-login-and-a-signed-in-user-access-dashboard-and-investment-plus-a-log-out-action",
+      "title": "Create a coherent multi-page frontend with the following routes/pages: Home, Login, Dashboard, and Investment. Include a persistent top navigation (or sidebar) that lets a signed-out user access Home and Login, and a signed-in user access Dashboard and Investment, plus a Log out action.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-authentication-using-internet-identity-and-wire-it-to-the-login-page-sign-in-sign-out-the-login-page-must-clearly-display-signed-in-state-principal-and-provide-a-sign-in-button-when-signed-out-and-a-sign-out-button-when-signed-in",
+      "title": "Implement authentication using Internet Identity and wire it to the Login page (sign in/sign out). The Login page must clearly display signed-in state (Principal) and provide a sign-in button when signed out and a sign-out button when signed in.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-investment-page-ui-to-manage-investment-records-for-the-signed-in-user-list-existing-investments-create-new-investment-edit-an-investment-and-delete-an-investment-use-clear-english-form-labels-and-inline-validation-required-fields-numeric-fields",
+      "title": "Build the Investment page UI to manage investment records for the signed-in user: list existing investments, create new investment, edit an investment, and delete an investment. Use clear English form labels and inline validation (required fields, numeric fields).",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-dashboard-page-to-summarize-the-signed-in-user-s-portfolio-investments-provide-at-least-total-number-of-investments-total-invested-amount-sum-and-a-simple-breakdown-by-investment-type-category-if-available-in-the-data-model",
+      "title": "Build the Dashboard page to summarize the signed-in user’s portfolio/investments. Provide at least: total number of investments, total invested amount (sum), and a simple breakdown by investment type/category if available in the data model.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-establish-a-consistent-visual-theme-and-layout-styling-across-all-pages-typography-spacing-components-suitable-for-a-finance-portfolio-app-use-a-distinct-style-avoid-default-look-and-apply-it-consistently",
+      "title": "Establish a consistent visual theme and layout styling across all pages (typography, spacing, components) suitable for a finance/portfolio app. Use a distinct style (avoid default look) and apply it consistently.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-and-add-a-small-set-of-static-visual-assets-used-by-the-home-page-hero-section-and-overall-branding-stored-under-frontend-public-assets-generated-and-render-them-in-the-ui-without-routing-through-the-backend",
+      "title": "Generate and add a small set of static visual assets used by the Home page hero section and overall branding (stored under frontend/public/assets/generated) and render them in the UI without routing through the backend.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create app pages: Home, Login, Dashboard, Investment",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Enable portfolio and investment tracking functionality",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Implement user authentication via a Login page",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Add backend data models and APIs to support per-user portfolio and investment tracking. At minimum, support: creating an investment record, listing the signed-in user’s investment records, updating an investment record, and deleting an investment record. All data must be scoped to the caller Principal.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Portfolio & Investment Tracker: Home, Login, Dashboard, Investment pages",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
